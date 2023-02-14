@@ -1,6 +1,6 @@
 $.ajax({
     type : "GET",
-    url : "https://desfrlopez.me/dnoriega/api/estados/",
+    url : "https://desfrlopez.me/dnoriega/api/tbl_estado",
     success : function (data) {
         console.log(data);
         cuerpo(data);
@@ -11,4 +11,5 @@ $.ajax({
 cuerpo = (data) => {
     let cuerpo = document.createElement("tr");
     
-}
+};
+
