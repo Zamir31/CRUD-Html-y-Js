@@ -5,46 +5,267 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <title>Document</title>
 </head>
 <body>
+  <div class="mb-4 mt-4">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalClientes">Clientes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalProductos">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalEstados">Estados</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalMarcas">Marcas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalPaises">Paises</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalTipoEnvio">Tipo envio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalPedidos">Pedidos</a>
+      </li>
+    </ul>
+  </div>
+  <hr style="opacity: 6%;">
   <div class="container">
+  <form action="" onsubmit="insertarProducto(event)">
+  <div>
+    <h2>Formulario de productos</h2>
     <div class="form-floating m-2">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="idProducto">
+      <label for="floatingInput">Id del producto</label>
+    </div>
+    <div class="form-floating m-2">
+      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="nombreProducto">
       <label for="floatingInput">Nombre del producto</label>
     </div>
     <div class="form-floating m-2">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="text" class="form-control" id="floatingPassword" placeholder="Password" name="caracteristicasProducts">
       <label for="floatingPassword">Caracteristicas</label>
     </div>
     <div class="m-2">
-    <select class="form-select" aria-label="Default select example" id="selectMarcas">
-      <option selected>Escoge la marca</option>
+    <select class="form-select" aria-label="Default select example" id="selectMarcas" name="tipoMarca">
       <!-- <option value="1">One</option>
       <option value="2">Two</option>
       <option value="3">Three</option> -->
     </select>
   </div>
+  <div class="m-2">
+    <button class="btn btn-primary" type="submit">Agregar producto</button>
   </div>
-    <div class="container">
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Estado actual</th>
-    </tr>
-  </thead>
-  <tbody id="cuerpo">
-    <!-- <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-    </tr> -->
-  </tbody>
-</table>
+  </div>
+  </form>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="putProductos()">Actualizar producto</button>
+  </div>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick = "BorrarProducto()">Eliminar producto</button>
+  </div>
+  </div>
+
+    <div class="modal fade" tabindex="-1" id="modalEstados" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tabla de estados</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+            <thead id="cuerpoEstadosTitulos">
+              <tr>
+                <th >Id</th>
+                <th >Estado actual</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoEstados">
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" id="modalMarcas" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tabla de Marcas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+            <thead>
+              <tr>
+                <th >Id</th>
+                <th >Marca</th>
+                <th>Pais Origen</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoMarcas">
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="modalPaises" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tabla de paises</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+            <thead>
+              <tr>
+                <th >Id</th>
+                <th >Pais</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoPaises">
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="modalTipoEnvio" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tabla de Tipo de Envio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+            <thead>
+              <tr>
+                <th >Id</th>
+                <th >Tipo de envio</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTipoEnvios">
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="modalProductos" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tabla de productos</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+            <thead>
+              <tr>
+                <th >Id</th>
+                <th >Producto</th>
+                <th>Caracteristicas</th>
+                <th>Id Marca</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoProductos">
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="modalClientes" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tabla de clientes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+            <thead>
+              <tr>
+                <th >Id</th>
+                <th >Nombre</th>
+                <th>Apellido</th>
+                <th>Dni</th>
+                <th>Direccion</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoClientes">
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="modalPedidos" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tabla de pedidos</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+            <thead>
+              <tr>
+                <th >Id pedido</th>
+                <th >id cliente</th>
+                <th>id producto</th>
+                <th>id estado</th>
+                <th>id pais</th>
+                <th>id tipo envio</th>
+                <th>fecha de pedido</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoPedidos">
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
     <form action="" onsubmit="insertarMarca(event)">
-    <div class="container mt-5 pb-5">
+    <div>
+      <h2>Formulario de marcas</h2>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="idMarca">
+        <label for="floatingInput">Id Marca</label>
+      </div>
       <div class="form-floating m-2">
         <input type="text" class="form-control" name="nombreMarca" placeholder="Nombre de la marca">
         <label for="floatingInput">Nombre de la marca</label>
@@ -53,11 +274,186 @@
         <input type="text" class="form-control" name="paisOrigen" placeholder="Pais de origen">
         <label for="floatingPassword">Pais de origen</label>
       </div>
-      <div>
+      <div class="m-2">
         <button class="btn btn-primary" type="submit">Agregar marca</button>
       </div>
     </div>
   </form>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="putMarca()">Actualizar marca</button>
+  </div>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="BorrarMarca()">Eliminar marca</button>
+  </div>
+    </div>
+
+    <div class="container mt-5">
+  <form action="" onsubmit="insertarCliente(event)">
+    <div>
+      <h2>Formulario de clientes</h2>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="idCliente">
+        <label for="floatingInput">Id cliente</label>
+      </div>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" name="nombreCliente" placeholder="Nombre del cliente">
+        <label>Nombre</label>
+      </div>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" name="apellidoCliente" placeholder="Apellido del cliente">
+        <label>Apellido</label>
+      </div>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" name="dniCliente" placeholder="DNI del cliente">
+        <label>Numero de identidad</label>
+      </div>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" name="direccionCliente" placeholder="Direccion del cliente">
+        <label>Direccion</label>
+      </div>
+      <div class="m-2">
+        <button class="btn btn-primary" type="submit">Agregar cliente</button>
+      </div>
+    </div>
+  </form>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="putclientes()">Actualizar cliente</button>
+  </div>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="BorrarCliente()">Eliminar cliente</button>
+  </div>
+    </div>
+
+    <div class="container mt-5">
+  <form action="" onsubmit="insertarEstado(event)">
+    <div>
+      <h2>Formulario de estados</h2>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="idEstado">
+        <label for="floatingInput">Id estado</label>
+      </div>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" name="tipoEstado" placeholder="Estado">
+        <label>Escriba un nuevo estado</label>
+      </div>
+      <div class="m-2">
+        <button class="btn btn-primary" type="submit">Agregar estado</button>
+      </div>
+    </div>
+  </form>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="putEstados()">Actualizar estado</button>
+  </div>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick ="BorrarEstado()">Eliminar estado</button>
+  </div>
+    </div>
+
+    <div class="container mt-5">
+  <form action="" onsubmit="insertarPais(event)">
+    <div>
+      <h2>Formulario de pais</h2>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="idPais">
+        <label for="floatingInput">Id pais</label>
+      </div>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" name="nombrePais" placeholder="pais">
+        <label>Escriba un nuevo pais</label>
+      </div>
+      <div class="m-2">
+        <button class="btn btn-primary" type="submit">Agregar pais</button>
+      </div>
+    </div>
+  </form>
+  <div class="m-2">
+    <button class="btn btn-primary" type="submit">Actualizar pais</button>
+  </div>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick ="BorrarPais() ">Eliminar pais</button>
+  </div>
+    </div>
+
+    <div class="container mt-5">
+  <form action="" onsubmit="insertarTipoEnvio(event)">
+    <div>
+      <h2>Formulario de tipo envio</h2>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="idTipoEnvio">
+        <label for="floatingInput">Id tipo envio</label>
+      </div>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" name="tipoEnvio" placeholder="envio">
+        <label>Escriba un nuevo tipo de envio</label>
+      </div>
+      <div class="m-2">
+        <button class="btn btn-primary" type="submit">Agregar tipo envio</button>
+      </div>
+    </div>
+  </form> 
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="putTipoEnvio()">Actualizar tipo envio</button>
+  </div>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="BorrarEnvio()">Eliminar tipo envio</button>
+  </div>
+    </div>
+
+    <div class="container mt-5">
+  <form action="" onsubmit="insertarPedido(event)">
+    <div>
+      <h2>Formulario de pedidos</h2>
+      <div class="form-floating m-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="idPedido">
+        <label for="floatingInput">Id del pedido</label>
+      </div>
+      <div class="m-2">
+        <select class="form-select" aria-label="Default select example" id="clientePedido" name="clientePedido">
+          <!-- <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option> -->
+        </select>
+      </div>
+      <div class="m-2">
+        <select class="form-select" aria-label="Default select example" id="productoPedido" name="productoPedido">
+          <!-- <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option> -->
+        </select>
+      </div>
+      <div class="m-2">
+        <select class="form-select" aria-label="Default select example" id="pedidoEstado" name="pedidoEstado">
+          <!-- <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option> -->
+        </select>
+      </div>
+      <div class="m-2">
+        <select class="form-select" aria-label="Default select example" id="pedidoPais" name="pedidoPais">
+          <!-- <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option> -->
+        </select>
+      </div>
+      <div class="m-2">
+        <select class="form-select" aria-label="Default select example" id="pedidoTipoEnvio" name="pedidoTipoEnvio">
+          <!-- <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option> -->
+        </select>
+      </div>
+      <div class="m-2">
+        <button class="btn btn-primary" type="submit">Agregar pedido</button>
+      </div>
+    </div>
+  </form>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick="putPedidos()"">Actualizar pedido</button>
+  </div>
+  <div class="m-2">
+    <button class="btn btn-primary" onclick ="BorrarPedido()">Eliminar pedido</button>
+  </div>
+    </div>
 </body>
 <script src="/index.js"></script>
 </html>
